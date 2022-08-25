@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidCRudWithSqLite">
         <activity
+            android:name=".UpdateCourseActivity"
+            android:exported="false" />
+        <activity
             android:name=".Class.ViewCourses"
             android:exported="false" />
         <activity

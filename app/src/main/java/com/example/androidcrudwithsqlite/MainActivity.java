@@ -1,14 +1,12 @@
 package com.example.androidcrudwithsqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.androidcrudwithsqlite.Class.DBHandler;
 import com.example.androidcrudwithsqlite.Class.ViewCourses;
 
@@ -45,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
                 String courseDuration = courseDurationEdt.getText().toString();
                 String courseDescription = courseDescriptionEdt.getText().toString();
 // validating if the text fields are empty or not.
-                if (courseName.isEmpty() && courseTracks.isEmpty() &&
-                        courseDuration.isEmpty() && courseDescription.isEmpty()) {
+                if (courseName.isEmpty() || (courseTracks.isEmpty() &&
+                        courseDuration.isEmpty() && courseDescription.isEmpty())) {
                     Toast.makeText(MainActivity.this, "Please enter all the data..",
                             Toast.LENGTH_SHORT).show();
                     return;

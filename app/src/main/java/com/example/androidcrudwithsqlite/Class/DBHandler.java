@@ -63,8 +63,6 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(NAME_COL, courseName);
         values.put(DURATION_COL, courseDuration);
         values.put(DESCRIPTION_COL, courseDescription);
-
-
         values.put(TRACKS_COL, courseTracks);
 // after adding all values we are passing
 // content values to our table.
@@ -92,10 +90,13 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursorCourses.moveToFirst()) {
             do {
 // on below line we are adding the data from cursor to our array list.
-                courseModalArrayList.add(new CourseModal(cursorCourses.getString(1),
-                        cursorCourses.getString(4),
+                courseModalArrayList.add(new CourseModal(
+                        cursorCourses.getString(1),
                         cursorCourses.getString(2),
-                        cursorCourses.getString(3)));
+                        cursorCourses.getString(4),
+                        cursorCourses.getString(3)
+                        )
+                );
 
             } while (cursorCourses.moveToNext());
 // moving our cursor to next.
@@ -104,5 +105,37 @@ public class DBHandler extends SQLiteOpenHelper {
 // and returning our array list.
         cursorCourses.close();
         return courseModalArrayList;
+    }
+
+    // below is the method for updating our courses
+    public void updateCourse(String originalCourseName, String courseName, String
+            courseDescription, String courseTracks, String courseDuration) {
+
+        // calling a method to get writable database.
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        // on below line we are passing all values
+        // along with its key and value pair.
+        values.put(NAME_COL, courseName);
+        values.put(DURATION_COL, courseDuration);
+        values.put(DESCRIPTION_COL, courseDescription);
+        values.put(TRACKS_COL, courseTracks);
+
+        // on below line we are calling a update method to update our database and passing our values.
+        // and we are comparing it with name of our course which is stored in origina name variable.
+        db.update(TABLE_NAME, values, "name=?", new String[]{originalCourseName});
+        db.close();
+    }
+
+    public void deleteCourse(String courseName) {
+
+        // on below line we are creating
+        // a variable to write our database.
+        SQLiteDatabase db = this.getWritableDatabase();
+        // on below line we are calling a method to delete our
+        // course and we are comparing it with our course name.
+        db.delete(TABLE_NAME, "name=?", new String[]{courseName});
+        db.close();
     }
 }

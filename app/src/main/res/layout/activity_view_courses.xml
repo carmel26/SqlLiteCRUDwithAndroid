@@ -6,8 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".Class.ViewCourses">
     <!--recycler view for displaying our courses-->
+    <RelativeLayout
+        android:id="@+id/headerLayOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:id="@+id/idBtnaddCourse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Add"
+            android:textAllCaps="false" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/idBtnaddCourse"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
+            android:id="@+id/HeaderTextId"
+            android:gravity="center"
+            android:text="All courses Registered"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp" />
+        <View
+            android:layout_width="300dp"
+            android:id="@+id/viewId"
+            android:layout_below="@+id/HeaderTextId"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/darker_gray" />
+    </RelativeLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVCourses"
         android:layout_width="match_parent"
+        android:layout_below="@+id/headerLayOut"
         android:layout_height="match_parent" />
 </RelativeLayout>

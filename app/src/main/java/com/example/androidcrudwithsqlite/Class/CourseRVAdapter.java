@@ -1,22 +1,26 @@
 package com.example.androidcrudwithsqlite.Class;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.androidcrudwithsqlite.R;
-
+import com.example.androidcrudwithsqlite.UpdateCourseActivity;
 import java.util.ArrayList;
+
 public class CourseRVAdapter extends RecyclerView.Adapter<CourseRVAdapter.ViewHolder> {
     // variable for our array list and context
     private ArrayList<CourseModal> courseModalArrayList;
     private Context context;
     // constructor
-    public CourseRVAdapter(ArrayList<CourseModal> courseModalArrayList, Context context) {
+    public CourseRVAdapter(ArrayList<CourseModal> courseModalArrayList, Context context)
+    {
         this.courseModalArrayList = courseModalArrayList;
         this.context = context;
     }
@@ -38,6 +42,22 @@ public class CourseRVAdapter extends RecyclerView.Adapter<CourseRVAdapter.ViewHo
         holder.courseDescTV.setText(modal.getCourseDescription());
         holder.courseDurationTV.setText(modal.getCourseDuration());
         holder.courseTracksTV.setText(modal.getCourseTracks());
+        // below line is to add on click listener for our recycler view item.
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // on below line we are calling an intent.
+                Intent i = new Intent(context, UpdateCourseActivity.class);
+                // below we are passing all our values.
+                i.putExtra("name", modal.getCourseName());
+                i.putExtra("description", modal.getCourseDescription());
+                i.putExtra("duration", modal.getCourseDuration());
+                i.putExtra("tracks", modal.getCourseTracks());
+                // starting our activity.
+                context.startActivity(i);
+            }
+        });
     }
     @Override
     public int getItemCount() {
@@ -45,7 +65,6 @@ public class CourseRVAdapter extends RecyclerView.Adapter<CourseRVAdapter.ViewHo
         return courseModalArrayList.size();
     }
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         // creating variables for our text views.
         private TextView courseNameTV, courseDescTV, courseDurationTV, courseTracksTV;
         public ViewHolder(@NonNull View itemView) {
@@ -55,6 +74,13 @@ public class CourseRVAdapter extends RecyclerView.Adapter<CourseRVAdapter.ViewHo
             courseDescTV = itemView.findViewById(R.id.idTVCourseDescription);
             courseDurationTV = itemView.findViewById(R.id.idTVCourseDuration);
             courseTracksTV = itemView.findViewById(R.id.idTVCourseTracks);
+            courseNameTV.setBackgroundColor(Color.argb(255, 148, 242, 176));
+            courseNameTV.setGravity(Gravity.CENTER);
+            courseNameTV.setTextSize(18);
+            courseDescTV.setBackgroundColor(Color.argb(255, 125, 201, 148));
+            courseDurationTV.setBackgroundColor(Color.argb(255, 90, 145, 107));
+            courseDurationTV.setBackgroundColor(Color.argb(255, 5, 5, 5));
+            courseDurationTV.setTextColor(Color.argb(255, 255, 255, 255));
         }
     }
 }
