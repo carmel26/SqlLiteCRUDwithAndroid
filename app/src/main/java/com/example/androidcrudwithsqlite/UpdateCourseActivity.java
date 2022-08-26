@@ -64,7 +64,7 @@ public class UpdateCourseActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
 
                 // launching our main activity.
-                Intent i = new Intent(UpdateCourseActivity.this, MainActivity.class);
+                Intent i = new Intent(UpdateCourseActivity.this, ViewCourses.class);
                 startActivity(i);
             }
         });

@@ -79,8 +79,9 @@ public class CourseRVAdapter extends RecyclerView.Adapter<CourseRVAdapter.ViewHo
             courseNameTV.setTextSize(18);
             courseDescTV.setBackgroundColor(Color.argb(255, 125, 201, 148));
             courseDurationTV.setBackgroundColor(Color.argb(255, 90, 145, 107));
-            courseDurationTV.setBackgroundColor(Color.argb(255, 5, 5, 5));
+            courseDurationTV.setBackgroundColor(Color.argb(255, 50, 50, 5));
             courseDurationTV.setTextColor(Color.argb(255, 255, 255, 255));
+            courseDurationTV.setGravity(Gravity.CENTER);
         }
     }
 }
